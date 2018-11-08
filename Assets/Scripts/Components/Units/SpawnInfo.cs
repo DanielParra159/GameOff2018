@@ -8,5 +8,6 @@ namespace Components.Units
         public float2 Position;
         public float2 Heading;
         public int Faction;
+        public int Path;
     }
 }
