@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Systems.Common
 {
-    [UpdateAfter(typeof(MoveSystem))]
+    [UpdateAfter(typeof(Move))]
     [UsedImplicitly]
-    public class SyncTransformPositionSystem : ComponentSystem
+    public class SyncTransformPosition : ComponentSystem
     {
         private struct Data
         {

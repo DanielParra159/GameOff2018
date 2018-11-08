@@ -8,7 +8,7 @@ using UnityEngine.ResourceManagement;
 namespace Systems.Units
 {
     [UsedImplicitly]
-    public class SpawnUnitSystem : ComponentSystem
+    public class SpawnUnit : ComponentSystem
     {
         private ComponentGroup _spawnInfoGroup;
 
