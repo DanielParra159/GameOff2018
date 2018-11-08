@@ -36,7 +36,8 @@ public class SceneInitializer : MonoBehaviour
         {
             Faction = Instance.SpawnPoint1.GetComponent<Faction>().Value,
             Heading = Instance.SpawnPoint1.GetComponent<Heading2D>().Value,
-            Position = new float2(Instance.SpawnPoint1.transform.position.x, Instance.SpawnPoint1.transform.position.y)
+            Position = new float2(Instance.SpawnPoint1.transform.position.x, Instance.SpawnPoint1.transform.position.y),
+            Path = Instance.SpawnPoint1.GetComponent<SpawnPoint>().Path,
         });
         
         spawnInfo = entityManager.CreateEntity();
