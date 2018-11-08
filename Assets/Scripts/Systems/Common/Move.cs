@@ -10,7 +10,7 @@ namespace Systems.Common
     [UpdateAfter(typeof(EnemyDetection))]
     [UpdateBefore(typeof(ProcessTarget))]
     [UsedImplicitly]
-    public class MoveSystem : ComponentSystem
+    public class Move : ComponentSystem
     {
         private ComponentGroup _movementGroup;
 
