@@ -1,29 +1,40 @@
+using Systems.Units;
 using Components.Common;
+using Components.Units;
 using JetBrains.Annotations;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Systems.Common
 {
+    [UpdateAfter(typeof(EnemyDetection))]
+    [UpdateBefore(typeof(ProcessTarget))]
     [UsedImplicitly]
     public class MoveSystem : ComponentSystem
     {
-        private struct Data
+        private ComponentGroup _movementGroup;
+
+        protected override void OnCreateManager()
         {
-#pragma warning disable 649
-            public Position2D Position;
-            public Heading2D Heading;
-            public MoveSpeed MoveSpeed;
-#pragma warning restore 649
+            _movementGroup = GetComponentGroup(
+                typeof(Position2D),
+                ComponentType.ReadOnly(typeof(Heading2D)),
+                ComponentType.ReadOnly(typeof(MoveSpeed)),
+                ComponentType.Subtractive(typeof(Target))
+            );
         }
 
         protected override void OnUpdate()
         {
             var deltaTime = Time.deltaTime;
-            foreach (var entity in GetEntities<Data>())
+            
+            var positions = _movementGroup.GetComponentArray<Position2D>();
+            var headings = _movementGroup.GetComponentArray<Heading2D>();
+            var moveSpeeds = _movementGroup.GetComponentArray<MoveSpeed>();
+
+            for (int i = 0; i < positions.Length; ++i)
             {
-                var position = entity.Position;
-                position.Value += entity.Heading.Value * entity.MoveSpeed.Value * deltaTime;
+                positions[i].Value += headings[i].Value * moveSpeeds[i].Value * deltaTime;
             }
         }
     }

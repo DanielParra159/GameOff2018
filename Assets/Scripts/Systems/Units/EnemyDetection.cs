@@ -85,6 +85,7 @@ namespace Systems.Units
 
                         if (math.lengthsq(otherUnit.Position2D - currentUnit.Position2D) < currentUnit.SquaredRange)
                         {
+                            PostUpdateCommands.AddComponent(currentUnit.Entity, new Target());
                             Debug.Log("Enemy " + currentUnit.Entity + " in range on " + otherUnit.Position2D + " coordinates");
                         }
                     }
