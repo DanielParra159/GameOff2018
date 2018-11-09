@@ -40,6 +40,12 @@ namespace Systems.Units
             unit.GetComponent<Faction>().Value = spawnInfo.Faction;
             unit.GetComponent<Heading2D>().Value = spawnInfo.Heading;
             unit.GetComponent<Unit>().Path = spawnInfo.Path;
+            var entity = unit.GetComponent<GameObjectEntity>().Entity;
+            EntityManager.AddBuffer<Damage>(entity);
+            EntityManager.AddComponentData(entity, new Health
+            {
+                Value = 10
+            });
         }
     }
 }
