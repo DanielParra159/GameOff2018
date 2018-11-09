@@ -2,6 +2,7 @@ using Components.Common;
 using Components.Units;
 using JetBrains.Annotations;
 using Unity.Entities;
+using UnityEngine;
 
 namespace Systems.Units
 {
@@ -24,17 +25,24 @@ namespace Systems.Units
             var targets = _unitInfoGroup.GetComponentDataArray<Target>();
             var attacks = _unitInfoGroup.GetComponentArray<Attack>();
             var entities = _unitInfoGroup.GetEntityArray();
+            var deltaTime = Time.deltaTime;
             
             for (var i = 0; i < entities.Length; ++i)
             {
                 var target = targets[i];
+                var attack = attacks[i];
+                attack.NextAvailableAttack -= deltaTime;
 
-                var dam = EntityManager.GetBuffer<Damage>(target.Entity);
-                dam.Add(new Damage
+                if (attack.NextAvailableAttack <= 0)
                 {
-                    Value = attacks[i].Value
-                });
-                
+                    attack.NextAvailableAttack = attack.Rate;
+                    var damageBuffer = EntityManager.GetBuffer<Damage>(target.Entity);
+                    damageBuffer.Add(new Damage
+                    {
+                        Value = attacks[i].Damage
+                    });
+                }
+
                 PostUpdateCommands.RemoveComponent<Target>(entities[i]); 
             }
         }

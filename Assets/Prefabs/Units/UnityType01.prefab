@@ -124,7 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e37951540994e4a9a61eae0f636632c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Value: 1
+  Damage: 1
+  NextAvailableAttack: 0
+  Rate: 3
 --- !u!114 &4552937149825011565
 MonoBehaviour:
   m_ObjectHideFlags: 0
