@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Systems.Units
 {
     [UsedImplicitly]
-    public class EnemyDetection : ComponentSystem
+    public class TargetDetection : ComponentSystem
     {
         private struct UnitData : IComponentData
         {
@@ -85,8 +85,10 @@ namespace Systems.Units
 
                         if (math.lengthsq(otherUnit.Position2D - currentUnit.Position2D) < currentUnit.SquaredRange)
                         {
-                            PostUpdateCommands.AddComponent(currentUnit.Entity, new Target());
-                            Debug.Log("Enemy " + currentUnit.Entity + " in range on " + otherUnit.Position2D + " coordinates");
+                            PostUpdateCommands.AddComponent(currentUnit.Entity, new Target
+                            {
+                                Entity = otherUnit.Entity
+                            });
                         }
                     }
                 }
