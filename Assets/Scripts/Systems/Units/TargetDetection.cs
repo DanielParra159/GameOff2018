@@ -19,10 +19,10 @@ namespace Systems.Units
             public float2 Position2D;
             public int Faction;
         }
-        
+
         private ComponentGroup _unitInfoGroup;
         private Dictionary<int, NativeList<UnitData>> _unitsDataByPaths;
-        
+
         protected override void OnCreateManager()
         {
             _unitInfoGroup = GetComponentGroup(
@@ -31,10 +31,11 @@ namespace Systems.Units
                 ComponentType.ReadOnly(typeof(Position2D)),
                 ComponentType.ReadOnly(typeof(Faction))
             );
-            
-            _unitsDataByPaths = new Dictionary<int, NativeList<UnitData>>(5); // TODO: move this magic number to constants file
+
+            _unitsDataByPaths =
+                new Dictionary<int, NativeList<UnitData>>(5); // TODO: move this magic number to constants file
         }
-        
+
         protected override void OnUpdate()
         {
             GetUnitsDataByPaths();
@@ -68,15 +69,18 @@ namespace Systems.Units
                 });
             }
         }
-        
+
         private void ProcessUnits()
         {
+            bool isWalking;
             foreach (KeyValuePair<int, NativeList<UnitData>> unitsDataByPath in _unitsDataByPaths)
             {
                 var unitsOnPath = unitsDataByPath.Value;
                 for (var i = 0; i < unitsOnPath.Length; ++i)
                 {
                     var currentUnit = unitsDataByPath.Value[i];
+                    var currentUnitEntity = currentUnit.Entity;
+                    isWalking = true;
                     for (var j = 0; j < unitsOnPath.Length; ++j)
                     {
                         var otherUnit = unitsOnPath[j];
@@ -85,15 +89,20 @@ namespace Systems.Units
 
                         if (math.lengthsq(otherUnit.Position2D - currentUnit.Position2D) < currentUnit.SquaredRange)
                         {
-                            PostUpdateCommands.AddComponent(currentUnit.Entity, new Target
+                            isWalking = false;
+                            PostUpdateCommands.AddComponent(currentUnitEntity, new Target
                             {
                                 Entity = otherUnit.Entity
                             });
                         }
                     }
+                    
+                    EntityManager.SetComponentData(currentUnitEntity, new AnimationData {IsWaling = isWalking});
                 }
+
                 unitsOnPath.Dispose();
             }
+
             _unitsDataByPaths.Clear();
         }
     }
