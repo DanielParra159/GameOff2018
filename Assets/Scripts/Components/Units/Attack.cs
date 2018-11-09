@@ -4,6 +4,8 @@ namespace Components.Units
 {
     public class Attack : MonoBehaviour
     {
-        public float Value;
+        public float Damage;
+        public float NextAvailableAttack;
+        public float Rate;
     }
 }
