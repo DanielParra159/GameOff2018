@@ -1,10 +1,10 @@
 using System;
-using UnityEngine;
+using Unity.Entities;
 
 namespace Components.Units
 {
     [Serializable]
-    public class Attack : MonoBehaviour
+    public struct Attack : IComponentData
     {
         public float Damage;
         public float NextAvailableAttack;

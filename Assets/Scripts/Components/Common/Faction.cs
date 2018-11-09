@@ -1,10 +1,10 @@
 using System;
-using UnityEngine;
+using Unity.Entities;
 
 namespace Components.Common
 {
     [Serializable]
-    public class Faction : MonoBehaviour
+    public struct Faction : IComponentData
     {
         public int Value;
     }

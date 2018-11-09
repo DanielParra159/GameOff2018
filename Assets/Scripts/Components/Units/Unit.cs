@@ -1,10 +1,10 @@
 using System;
-using UnityEngine;
+using Unity.Entities;
 
 namespace Components.Units
 {
     [Serializable]
-    public class Unit : MonoBehaviour
+    public struct Unit : IComponentData
     {
         public int Path;
     }

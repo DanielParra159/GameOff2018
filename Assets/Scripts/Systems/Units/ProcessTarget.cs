@@ -16,14 +16,14 @@ namespace Systems.Units
         {
             _unitInfoGroup = GetComponentGroup(
                 ComponentType.ReadOnly(typeof(Target)),
-                ComponentType.ReadOnly(typeof(Attack))
+                typeof(Attack)
             );
         }
         
         protected override void OnUpdate()
         {
             var targets = _unitInfoGroup.GetComponentDataArray<Target>();
-            var attacks = _unitInfoGroup.GetComponentArray<Attack>();
+            var attacks = _unitInfoGroup.GetComponentDataArray<Attack>();
             var entities = _unitInfoGroup.GetEntityArray();
             var deltaTime = Time.deltaTime;
             
@@ -43,6 +43,8 @@ namespace Systems.Units
                     });
                 }
 
+                attacks[i] = attack;
+                
                 PostUpdateCommands.RemoveComponent<Target>(entities[i]); 
             }
         }

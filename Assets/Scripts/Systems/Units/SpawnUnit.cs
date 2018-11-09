@@ -1,3 +1,4 @@
+using Builders.Unit;
 using Components.Common;
 using Components.Units;
 using JetBrains.Annotations;
@@ -36,16 +37,10 @@ namespace Systems.Units
 
         private void SetUnitConfiguration(GameObject unit, SpawnInfo spawnInfo)
         {
-            unit.GetComponent<Position2D>().Value = spawnInfo.Position;
-            unit.GetComponent<Faction>().Value = spawnInfo.Faction;
-            unit.GetComponent<Heading2D>().Value = spawnInfo.Heading;
-            unit.GetComponent<Unit>().Path = spawnInfo.Path;
             var entity = unit.GetComponent<GameObjectEntity>().Entity;
-            EntityManager.AddBuffer<Damage>(entity);
-            EntityManager.AddComponentData(entity, new Health
-            {
-                Value = 10
-            });
+
+            var unitBuilder = new UnitBuilder(SceneInitializer.Instance.UnitConfiguration, spawnInfo);
+            unitBuilder.Build(entity);
         }
     }
 }

@@ -1,10 +1,10 @@
 using System;
-using UnityEngine;
+using Unity.Entities;
 
 namespace Components.Units
 {
     [Serializable]
-    public class Range : MonoBehaviour
+    public struct Range : IComponentData
     {
         public float Value;
     }

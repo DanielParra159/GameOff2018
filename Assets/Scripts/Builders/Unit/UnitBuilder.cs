@@ -6,50 +6,60 @@ namespace Builders.Unit
 {
     public class UnitBuilder
     {
-        private readonly EntityArchetype _unitArchetype;
         private readonly UnitConfiguration _unitConfiguration;
-        private readonly UnitData _unitData;
+        private readonly SpawnInfo _unitData;
 
-        public UnitBuilder(UnitConfiguration unitConfiguration, UnitData unitData)
+        public UnitBuilder(UnitConfiguration unitConfiguration, SpawnInfo unitData)
         {
             _unitConfiguration = unitConfiguration;
             _unitData = unitData;
-            var entityManager = World.Active.GetExistingManager<EntityManager>();
-            _unitArchetype = entityManager.CreateArchetype(
-                typeof(Components.Units.Unit),
-                typeof(Position2D),
-                typeof(Heading2D),
-                typeof(Faction),
-                typeof(Attack),
-                typeof(Range),
-                typeof(Health),
-                typeof(MoveSpeed)
-            );
         }
 
-        public void Build()
+        public void Build(Entity entity)
         {
             var entityManager = World.Active.GetExistingManager<EntityManager>();
 
-            Entity unit = entityManager.CreateEntity(_unitArchetype);
-            entityManager.SetComponentData(unit, GetUnitComponent(_unitData));
-            entityManager.SetComponentData(unit, GetPositionComponent(_unitData));
-            entityManager.SetComponentData(unit, GetHeadingComponent(_unitData));
-            entityManager.SetComponentData(unit, GetFactionComponent(_unitData));
-            entityManager.SetComponentData(unit, GetAttackComponent(_unitConfiguration));
-            entityManager.SetComponentData(unit, GetRangeComponent(_unitConfiguration));
-            entityManager.SetComponentData(unit, GetHealthComponent(_unitConfiguration));
-            entityManager.SetComponentData(unit, GetMoveSpeedComponent(_unitConfiguration));
+            entityManager.AddComponentData(entity, GetUnitComponent(_unitData));
+            entityManager.AddComponentData(entity, GetPositionComponent(_unitData));
+            entityManager.AddComponentData(entity, GetHeadingComponent(_unitData));
+            entityManager.AddComponentData(entity, GetFactionComponent(_unitData));
+            entityManager.AddComponentData(entity, GetAttackComponent(_unitConfiguration));
+            entityManager.AddComponentData(entity, GetRangeComponent(_unitConfiguration));
+            entityManager.AddComponentData(entity, GetHealthComponent(_unitConfiguration));
+            entityManager.AddComponentData(entity, GetMoveSpeedComponent(_unitConfiguration));
+            entityManager.AddBuffer<Damage>(entity);
         }
 
-        private Faction GetFactionComponent(UnitData unitData)
+        
+        private Position2D GetPositionComponent(SpawnInfo unitData)
         {
-            return new Faction
+            return new Position2D
             {
-                Value = unitData.Faction.Value
+                Value = unitData.Position
+            };
+        }
+        
+        private Heading2D GetHeadingComponent(SpawnInfo unitData)
+        {
+            return new Heading2D
+            {
+                Value = unitData.Heading
             };
         }
 
+        private Components.Units.Unit GetUnitComponent(SpawnInfo unitData)
+        {
+            return new Components.Units.Unit {Path = unitData.Path};
+        }
+        
+        private Faction GetFactionComponent(SpawnInfo unitData)
+        {
+            return new Faction
+            {
+                Value = unitData.Faction
+            };
+        }
+        
         private MoveSpeed GetMoveSpeedComponent(UnitConfiguration unitConfiguration)
         {
             return new MoveSpeed
@@ -66,26 +76,6 @@ namespace Builders.Unit
             };
         }
 
-        private Position2D GetPositionComponent(UnitData unitData)
-        {
-            return new Position2D
-            {
-                Value = unitData.Position.Value
-            };
-        }
-        
-        private Heading2D GetHeadingComponent(UnitData unitData)
-        {
-            return new Heading2D
-            {
-                Value = unitData.Heading.Value
-            };
-        }
-
-        private Components.Units.Unit GetUnitComponent(UnitData unitData)
-        {
-            return new Components.Units.Unit {Path = unitData.Unit.Path};
-        }
 
         private Attack GetAttackComponent(UnitConfiguration unitConfiguration)
         {
