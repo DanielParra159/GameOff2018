@@ -14,7 +14,7 @@ namespace Systems.Common
         private struct Data
         {
 #pragma warning disable 649
-            [ReadOnly] public Position2D Position;
+            [ReadOnly] public unsafe Position2D* Position;
             public Transform TransformOutput;
 #pragma warning restore 649
         }
@@ -22,11 +22,11 @@ namespace Systems.Common
         protected override void OnUpdate()
         {
             foreach (var entity in GetEntities<Data>())
-            {
-
-                var position = entity.Position.Value;
-                entity.TransformOutput.position = new float3(position.x, position.y, 0);
-            }
+                unsafe
+                {
+                    var position = entity.Position->Value;
+                    entity.TransformOutput.position = new float3(position.x, position.y, 0);
+                }
         }
     }
 }

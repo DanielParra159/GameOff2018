@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Components.Units
 {
-    public class SpawnPoint : MonoBehaviour
+    public class SpawnPointMonoBehaviour : MonoBehaviour
     {
         public int Path;
     }

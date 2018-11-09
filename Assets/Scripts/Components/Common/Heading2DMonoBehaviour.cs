@@ -1,9 +1,9 @@
-using Unity.Entities;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace Components.Common
 {
-    public struct Position2D : IComponentData
+    public class Heading2DMonoBehaviour : MonoBehaviour
     {
         public float2 Value;
     }

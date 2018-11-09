@@ -44,10 +44,10 @@ namespace Systems.Units
 
         private void GetUnitsDataByPaths()
         {
-            var units = _unitInfoGroup.GetComponentArray<Unit>();
-            var ranges = _unitInfoGroup.GetComponentArray<Range>();
-            var positions = _unitInfoGroup.GetComponentArray<Position2D>();
-            var factions = _unitInfoGroup.GetComponentArray<Faction>();
+            var units = _unitInfoGroup.GetComponentDataArray<Unit>();
+            var ranges = _unitInfoGroup.GetComponentDataArray<Range>();
+            var positions = _unitInfoGroup.GetComponentDataArray<Position2D>();
+            var factions = _unitInfoGroup.GetComponentDataArray<Faction>();
             var entities = _unitInfoGroup.GetEntityArray();
 
             for (var i = 0; i < entities.Length; ++i)

@@ -3,6 +3,7 @@ using Components.Common;
 using Components.Units;
 using JetBrains.Annotations;
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Systems.Common
@@ -28,13 +29,16 @@ namespace Systems.Common
         {
             var deltaTime = Time.deltaTime;
             
-            var positions = _movementGroup.GetComponentArray<Position2D>();
-            var headings = _movementGroup.GetComponentArray<Heading2D>();
-            var moveSpeeds = _movementGroup.GetComponentArray<MoveSpeed>();
+            var positions = _movementGroup.GetComponentDataArray<Position2D>();
+            var headings = _movementGroup.GetComponentDataArray<Heading2D>();
+            var moveSpeeds = _movementGroup.GetComponentDataArray<MoveSpeed>();
 
             for (int i = 0; i < positions.Length; ++i)
             {
-                positions[i].Value += headings[i].Value * moveSpeeds[i].Value * deltaTime;
+                positions[i] = new Position2D
+                {
+                    Value = positions[i].Value + headings[i].Value * moveSpeeds[i].Value * deltaTime
+                };
             }
         }
     }

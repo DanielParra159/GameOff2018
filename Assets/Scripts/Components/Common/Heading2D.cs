@@ -1,9 +1,11 @@
+using System;
+using Unity.Entities;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace Components.Common
 {
-    public class Heading2D : MonoBehaviour
+    [Serializable]
+    public struct Heading2D : IComponentData
     {
         public float2 Value;
     }

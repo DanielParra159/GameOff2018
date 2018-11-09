@@ -1,8 +1,10 @@
-using UnityEngine;
+using System;
+using Unity.Entities;
 
 namespace Components.Common
 {
-    public class MoveSpeed : MonoBehaviour
+    [Serializable]
+    public struct MoveSpeed : IComponentData
     {
         public float Value;
     }
