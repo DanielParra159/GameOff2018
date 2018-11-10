@@ -83,8 +83,6 @@ namespace Builders.Unit
             return new Attack
             {
                 Damage = unitConfiguration.Attack.Damage,
-                NextAvailableAttack = 0,
-                Rate = unitConfiguration.Attack.Rate
             };
         }
         

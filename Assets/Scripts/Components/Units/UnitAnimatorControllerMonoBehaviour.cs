@@ -10,12 +10,10 @@ namespace Components.Units
         [SerializeField] private Animator _animator;
         [SerializeField] private GameObjectEntity _gameObjectEntity;
 
-        private int _attackHash;
         private int _walkingHash;
 
         private void Awake()
         {
-            _attackHash = Animator.StringToHash("Attack");
             _walkingHash = Animator.StringToHash("Walking");
         }
 
@@ -26,22 +24,20 @@ namespace Components.Units
             var animationData = entityManager.GetComponentData<AnimationData>(entity);
             
             Walking(animationData.IsWaling);
-            if (animationData.StartAttack)
-            {
-                //animationData.StartAttack = false;
-                //entityManager.SetComponentData(entity, animationData);
-                Attack();
-            }
+        }
+
+        public void DoDamageEvent()
+        {
+            var entityManager = World.Active.GetExistingManager<EntityManager>();
+            var entity = _gameObjectEntity.Entity;
+            var attack = entityManager.GetComponentData<Attack>(entity);
+            attack.IsReady = true;
+            entityManager.SetComponentData(entity, attack);
         }
 
         private void Walking(bool isWalking)
         {
             _animator.SetBool(_walkingHash, isWalking);
-        }
-
-        private void Attack()
-        {
-            _animator.SetTrigger(_attackHash);
         }
     }
 }
