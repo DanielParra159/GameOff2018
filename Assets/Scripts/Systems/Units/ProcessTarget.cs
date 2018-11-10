@@ -25,17 +25,15 @@ namespace Systems.Units
             var targets = _unitInfoGroup.GetComponentDataArray<Target>();
             var attacks = _unitInfoGroup.GetComponentDataArray<Attack>();
             var entities = _unitInfoGroup.GetEntityArray();
-            var deltaTime = Time.deltaTime;
             
             for (var i = 0; i < entities.Length; ++i)
             {
                 var target = targets[i];
                 var attack = attacks[i];
-                attack.NextAvailableAttack -= deltaTime;
 
-                if (attack.NextAvailableAttack <= 0)
+                if (attack.IsReady)
                 {
-                    attack.NextAvailableAttack = attack.Rate;
+                    attack.IsReady = false;
                     var damageBuffer = EntityManager.GetBuffer<Damage>(target.Entity);
                     damageBuffer.Add(new Damage
                     {

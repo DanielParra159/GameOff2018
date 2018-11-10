@@ -1,5 +1,6 @@
 using System;
 using Unity.Entities;
+using Utils;
 
 namespace Components.Units
 {
@@ -7,7 +8,6 @@ namespace Components.Units
     public struct Attack : IComponentData
     {
         public float Damage;
-        public float NextAvailableAttack;
-        public float Rate;
+        public Bool IsReady;
     }
 }

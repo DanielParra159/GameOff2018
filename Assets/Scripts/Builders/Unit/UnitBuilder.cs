@@ -27,6 +27,7 @@ namespace Builders.Unit
             entityManager.AddComponentData(entity, GetRangeComponent(_unitConfiguration));
             entityManager.AddComponentData(entity, GetHealthComponent(_unitConfiguration));
             entityManager.AddComponentData(entity, GetMoveSpeedComponent(_unitConfiguration));
+            entityManager.AddComponentData(entity, new AnimationData{IsWaling = true});
             entityManager.AddBuffer<Damage>(entity);
         }
 
@@ -82,8 +83,6 @@ namespace Builders.Unit
             return new Attack
             {
                 Damage = unitConfiguration.Attack.Damage,
-                NextAvailableAttack = 0,
-                Rate = unitConfiguration.Attack.Rate
             };
         }
         
