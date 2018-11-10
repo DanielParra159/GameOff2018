@@ -13,8 +13,10 @@ public class SceneInitializer : MonoBehaviour
     // TODO: This is a quickly test
     public static SceneInitializer Instance{ get; private set; }
     
-    public AssetReference Unit;
-    public UnitConfiguration UnitConfiguration;
+    public AssetReference UnitType01;
+    public AssetReference UnitType02;
+    public UnitConfiguration UnitType01Configuration;
+    public UnitConfiguration UnitType02Configuration;
     public GameObject SpawnPoint1;
     public GameObject SpawnPoint2;
     
@@ -40,6 +42,7 @@ public class SceneInitializer : MonoBehaviour
             Heading = Instance.SpawnPoint1.GetComponent<Heading2DMonoBehaviour>().Value,
             Position = new float2(Instance.SpawnPoint1.transform.position.x, Instance.SpawnPoint1.transform.position.y),
             Path = Instance.SpawnPoint1.GetComponent<SpawnPointMonoBehaviour>().Path,
+            Unit = UnitType.Type01
         });
         
         spawnInfo = entityManager.CreateEntity();
@@ -47,10 +50,9 @@ public class SceneInitializer : MonoBehaviour
         {
             Faction = Instance.SpawnPoint2.GetComponent<FactionMonoBehaviour>().Value,
             Heading = Instance.SpawnPoint2.GetComponent<Heading2DMonoBehaviour>().Value,
-            Position = new float2(Instance.SpawnPoint2.transform.position.x, Instance.SpawnPoint2.transform.position.y)
+            Position = new float2(Instance.SpawnPoint2.transform.position.x, Instance.SpawnPoint2.transform.position.y),
+            Path = Instance.SpawnPoint2.GetComponent<SpawnPointMonoBehaviour>().Path,
+            Unit = UnitType.Type02
         });
-
-
-
     }
 }

@@ -17,8 +17,16 @@ MonoBehaviour:
     m_serializedData: []
   m_guid: 7f42d1997849de44faed6fca1b7cc06e
   m_serializeEntries:
-  - m_guid: d80f4bf38cc76064891fe2c490a6ef66
+  - m_guid: b64cc96f50a1de044961f0edfcdf7812
     m_address: Assets/Prefabs/Units/UnityType01.prefab
+    m_readOnly: 0
+    m_serializedLabels: []
+  - m_guid: c001920aa543dc14394d23793066b4de
+    m_address: Assets/Prefabs/Units/UnityType02.prefab
+    m_readOnly: 0
+    m_serializedLabels: []
+  - m_guid: d80f4bf38cc76064891fe2c490a6ef66
+    m_address: Assets/Prefabs/Units/UnityType.prefab
     m_readOnly: 0
     m_serializedLabels: []
   m_readOnly: 0
