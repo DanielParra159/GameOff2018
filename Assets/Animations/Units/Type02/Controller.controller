@@ -6,7 +6,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UnityType01
+  m_Name: Controller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Walking
@@ -14,7 +14,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -99,7 +99,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7519ef23125ff7640a32a423b863b158, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2178c7ea86b34444fb0bdc91cc09ace9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -126,7 +126,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 554f13102d05f944e8885bdaf0566163, type: 2}
+  m_Motion: {fileID: 7400000, guid: a097eeb5bca0cf443bae21b470309ebb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

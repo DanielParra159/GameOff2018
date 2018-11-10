@@ -141,13 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a90e71c1e680f4c9937e4e5f25784f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Unit:
-    m_assetGUID: d80f4bf38cc76064891fe2c490a6ef66
-    m_cachedAsset: {fileID: 1707780468373675890, guid: d80f4bf38cc76064891fe2c490a6ef66,
-      type: 3}
-  UnitConfiguration: {fileID: 11400000, guid: 3d70434a9c42b0548909b44aba2d3fe8, type: 2}
-  SpawnPoint1: {fileID: 1538789103}
-  SpawnPoint2: {fileID: 2008189513}
+  _spawnPoint1: {fileID: 1538789103}
+  _spawnPoint2: {fileID: 2008189513}
+  _unitFactory: {fileID: 11400000, guid: 2073b38328127474e8223666479c4430, type: 2}
 --- !u!4 &339339554
 Transform:
   m_ObjectHideFlags: 0

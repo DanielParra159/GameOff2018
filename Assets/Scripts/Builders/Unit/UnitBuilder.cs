@@ -6,27 +6,18 @@ namespace Builders.Unit
 {
     public class UnitBuilder
     {
-        private readonly UnitConfiguration _unitConfiguration;
-        private readonly SpawnInfo _unitData;
-
-        public UnitBuilder(UnitConfiguration unitConfiguration, SpawnInfo unitData)
-        {
-            _unitConfiguration = unitConfiguration;
-            _unitData = unitData;
-        }
-
-        public void Build(Entity entity)
+        public void Build(UnitConfiguration unitConfiguration, SpawnInfo spawnInfo, Entity entity)
         {
             var entityManager = World.Active.GetExistingManager<EntityManager>();
 
-            entityManager.AddComponentData(entity, GetUnitComponent(_unitData));
-            entityManager.AddComponentData(entity, GetPositionComponent(_unitData));
-            entityManager.AddComponentData(entity, GetHeadingComponent(_unitData));
-            entityManager.AddComponentData(entity, GetFactionComponent(_unitData));
-            entityManager.AddComponentData(entity, GetAttackComponent(_unitConfiguration));
-            entityManager.AddComponentData(entity, GetRangeComponent(_unitConfiguration));
-            entityManager.AddComponentData(entity, GetHealthComponent(_unitConfiguration));
-            entityManager.AddComponentData(entity, GetMoveSpeedComponent(_unitConfiguration));
+            entityManager.AddComponentData(entity, GetUnitComponent(spawnInfo));
+            entityManager.AddComponentData(entity, GetPositionComponent(spawnInfo));
+            entityManager.AddComponentData(entity, GetHeadingComponent(spawnInfo));
+            entityManager.AddComponentData(entity, GetFactionComponent(spawnInfo));
+            entityManager.AddComponentData(entity, GetAttackComponent(unitConfiguration));
+            entityManager.AddComponentData(entity, GetRangeComponent(unitConfiguration));
+            entityManager.AddComponentData(entity, GetHealthComponent(unitConfiguration));
+            entityManager.AddComponentData(entity, GetMoveSpeedComponent(unitConfiguration));
             entityManager.AddComponentData(entity, new AnimationData{IsWaling = true});
             entityManager.AddBuffer<Damage>(entity);
         }
