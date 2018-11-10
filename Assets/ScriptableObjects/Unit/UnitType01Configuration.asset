@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4cb5da68d374b8881809588b049fbb3, type: 3}
   m_Name: UnitType01Configuration
   m_EditorClassIdentifier: 
+  _assetReference:
+    m_assetGUID: b64cc96f50a1de044961f0edfcdf7812
+    m_cachedAsset: {fileID: 1834861603678265613, guid: b64cc96f50a1de044961f0edfcdf7812,
+      type: 3}
   _health:
     Value: 10
   _attack:

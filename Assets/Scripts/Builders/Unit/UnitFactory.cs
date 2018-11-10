@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Components.Units;
 using Unity.Entities;
 using UnityEngine;
@@ -7,39 +9,31 @@ using UnityEngine.ResourceManagement;
 
 namespace Builders.Unit
 {
-    public class UnitFactory
+    [CreateAssetMenu(fileName = "UnitFactory", menuName = Constants.AssetsMenu + "Units/UnitFactory", order = 1)]
+    public class UnitFactory : ScriptableObject, IUnitFactory
     {
+        [SerializeField] private UnitConfiguration[] _archetypes;
+
         private readonly UnitBuilder _unitBuilder;
 
-        public UnitFactory()
+        private UnitFactory()
         {
             _unitBuilder = new UnitBuilder();
         }
-    
+
         public void Instance(SpawnInfo spawnInfo)
         {
-            // TODO: find a better way to do this differentiation
-            AssetReference unitReference = null;
-            UnitConfiguration unitConfiguration = null;
-            switch (spawnInfo.Unit)
-            {
-                case UnitType.Type01:
-                    unitReference = SceneInitializer.Instance.UnitType01;
-                    unitConfiguration = SceneInitializer.Instance.UnitType01Configuration;
-                    break;
-                case UnitType.Type02:
-                    unitReference = SceneInitializer.Instance.UnitType02;
-                    unitConfiguration = SceneInitializer.Instance.UnitType02Configuration;
-                    break;
-                default:
-                    Assert.IsTrue(false, spawnInfo.Unit + " is an invalid type");
-                    break;
-            }
+            Assert.IsTrue(spawnInfo.Unit <= _archetypes.Length, spawnInfo.Unit + " is an invalid type");
 
-            unitReference.Instantiate<GameObject>().Completed +=
+            // TODO: find a better way to do this differentiation
+            var unitReferences = _archetypes[spawnInfo.Unit];
+
+            unitReferences.AssetReference
+                    .Instantiate<GameObject>(new Vector3(spawnInfo.Position.x, spawnInfo.Position.y),
+                        Quaternion.identity).Completed +=
                 delegate(IAsyncOperation<GameObject> operation)
                 {
-                    SetUnitConfiguration(operation.Result, spawnInfo, unitConfiguration);
+                    SetUnitConfiguration(operation.Result, spawnInfo, unitReferences);
                 };
         }
 
@@ -49,5 +43,10 @@ namespace Builders.Unit
 
             _unitBuilder.Build(unitConfiguration, spawnInfo, entity);
         }
+    }
+
+    public interface IUnitFactory
+    {
+        void Instance(SpawnInfo spawnInfo);
     }
 }

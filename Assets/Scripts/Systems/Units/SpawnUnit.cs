@@ -1,4 +1,3 @@
-using Builders.Unit;
 using Components.Units;
 using JetBrains.Annotations;
 using Unity.Entities;
@@ -9,12 +8,10 @@ namespace Systems.Units
     public class SpawnUnit : ComponentSystem
     {
         private ComponentGroup _spawnInfoGroup;
-        private UnitFactory _unitFactory;
 
         protected override void OnCreateManager()
         {
             _spawnInfoGroup = GetComponentGroup(ComponentType.ReadOnly(typeof(SpawnInfo)));
-            _unitFactory = new UnitFactory();
         }
 
         protected override void OnUpdate()
@@ -24,7 +21,7 @@ namespace Systems.Units
 
             for (var i = 0; i < entities.Length; ++i)
             {
-                _unitFactory.Instance(spawnsInfo[i]);
+                SceneInitializer.Instance.UnitFactory.Instance(spawnsInfo[i]);
                 PostUpdateCommands.DestroyEntity(entities[i]);
             }
         }
