@@ -44,9 +44,4 @@ namespace Builders.Unit
             _unitBuilder.Build(unitConfiguration, spawnInfo, entity);
         }
     }
-
-    public interface IUnitFactory
-    {
-        void Instance(SpawnInfo spawnInfo);
-    }
 }
