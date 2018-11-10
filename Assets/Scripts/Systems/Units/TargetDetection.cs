@@ -29,7 +29,8 @@ namespace Systems.Units
                 ComponentType.ReadOnly(typeof(Unit)),
                 ComponentType.ReadOnly(typeof(Range)),
                 ComponentType.ReadOnly(typeof(Position2D)),
-                ComponentType.ReadOnly(typeof(Faction))
+                ComponentType.ReadOnly(typeof(Faction)),
+                ComponentType.Subtractive(typeof(Dying))
             );
 
             _unitsDataByPaths =
@@ -72,7 +73,6 @@ namespace Systems.Units
 
         private void ProcessUnits()
         {
-            bool isWalking;
             foreach (KeyValuePair<int, NativeList<UnitData>> unitsDataByPath in _unitsDataByPaths)
             {
                 var unitsOnPath = unitsDataByPath.Value;
@@ -80,7 +80,7 @@ namespace Systems.Units
                 {
                     var currentUnit = unitsDataByPath.Value[i];
                     var currentUnitEntity = currentUnit.Entity;
-                    isWalking = true;
+                    var isWalking = true;
                     for (var j = 0; j < unitsOnPath.Length; ++j)
                     {
                         var otherUnit = unitsOnPath[j];
@@ -97,7 +97,7 @@ namespace Systems.Units
                         }
                     }
                     
-                    EntityManager.SetComponentData(currentUnitEntity, new AnimationData {IsWaling = isWalking});
+                    EntityManager.SetComponentData(currentUnitEntity, new AnimationData {SetIsWaling = isWalking});
                 }
 
                 unitsOnPath.Dispose();

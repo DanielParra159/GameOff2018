@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Components.Common;
+using Components.Units;
 using JetBrains.Annotations;
 using Unity.Entities;
-using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Systems.Units
@@ -15,26 +15,17 @@ namespace Systems.Units
         {
             public readonly int Length;
             public GameObjectArray GameObjects;
-            public ComponentDataArray<Health> Healths;
+            public ComponentDataArray<Unit> Units;
+            public ComponentDataArray<Dead> Healths;
         }
         [Inject] private Entities _entities;
 #pragma warning restore 649
         
         protected override void OnUpdate()
         {
-            var unitsToDestroy = new List<GameObject>();
             for (var i = 0; i < _entities.Length; ++i)
             {
-
-                if (_entities.Healths[i].Value <= 0)
-                {
-                    unitsToDestroy.Add(_entities.GameObjects[i]);
-                }
-            }
-
-            foreach (var go in unitsToDestroy)
-            {
-                Addressables.ReleaseInstance(go);
+                Addressables.ReleaseInstance(_entities.GameObjects[i]);
             }
         }
     }
