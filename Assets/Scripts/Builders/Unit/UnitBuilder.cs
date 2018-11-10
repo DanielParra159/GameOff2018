@@ -18,7 +18,7 @@ namespace Builders.Unit
             entityManager.AddComponentData(entity, GetRangeComponent(unitConfiguration));
             entityManager.AddComponentData(entity, GetHealthComponent(unitConfiguration));
             entityManager.AddComponentData(entity, GetMoveSpeedComponent(unitConfiguration));
-            entityManager.AddComponentData(entity, new AnimationData{IsWaling = true});
+            entityManager.AddComponentData(entity, new AnimationData{SetIsWaling = true});
             entityManager.AddBuffer<Damage>(entity);
         }
 

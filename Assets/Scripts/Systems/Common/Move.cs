@@ -21,14 +21,15 @@ namespace Systems.Common
                 typeof(Position2D),
                 ComponentType.ReadOnly(typeof(Heading2D)),
                 ComponentType.ReadOnly(typeof(MoveSpeed)),
-                ComponentType.Subtractive(typeof(Target))
+                ComponentType.Subtractive(typeof(Target)),
+                ComponentType.Subtractive(typeof(Dying))
             );
         }
 
         protected override void OnUpdate()
         {
             var deltaTime = Time.deltaTime;
-            
+
             var positions = _movementGroup.GetComponentDataArray<Position2D>();
             var headings = _movementGroup.GetComponentDataArray<Heading2D>();
             var moveSpeeds = _movementGroup.GetComponentDataArray<MoveSpeed>();

@@ -4,6 +4,7 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
+using Unity.Mathematics;
 
 namespace Systems.Common
 {
@@ -25,11 +26,12 @@ namespace Systems.Common
                     totalDamage += damagesBuffer[j].Value;
                 }
 
+                var newHealth = math.max(0, Healths[i].Value - totalDamage);
                 Healths[i] = new Health
                 {
-                    Value =  Healths[i].Value - totalDamage
+                    Value =  newHealth
                 };
-                
+
                 damagesBuffer.Clear();
             }
         }
