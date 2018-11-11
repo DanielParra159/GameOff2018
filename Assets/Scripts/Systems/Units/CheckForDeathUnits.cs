@@ -1,3 +1,4 @@
+using Systems.Common;
 using Components.Common;
 using Components.Units;
 using JetBrains.Annotations;
@@ -6,6 +7,7 @@ using Unity.Entities;
 namespace Systems.Units
 {
     [UsedImplicitly]
+    [UpdateAfter(typeof(ProcessDamage))]
     public class CheckForDeathUnits : ComponentSystem
     {
         private ComponentGroup _group;

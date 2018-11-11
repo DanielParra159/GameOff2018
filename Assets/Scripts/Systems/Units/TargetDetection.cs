@@ -94,6 +94,7 @@ namespace Systems.Units
                             {
                                 Entity = otherUnit.Entity
                             });
+                            break;
                         }
                     }
                     

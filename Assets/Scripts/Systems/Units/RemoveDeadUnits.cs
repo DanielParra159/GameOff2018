@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Components.Common;
 using Components.Units;
 using JetBrains.Annotations;
@@ -8,6 +7,7 @@ using UnityEngine.AddressableAssets;
 namespace Systems.Units
 {
     [UsedImplicitly]
+    [UpdateAfter(typeof(CheckForDeathUnits))]
     public class DestroyUnits : ComponentSystem
     {
 #pragma warning disable 649
