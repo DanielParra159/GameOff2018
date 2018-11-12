@@ -1,8 +1,9 @@
+using Systems.Common;
 using Components.Common;
 using NUnit.Framework;
 using Unity.Mathematics;
 
-namespace Editor.Tests.Systems
+namespace Editor.Tests.Systems.Common
 {
     public class ProcessDamageTest : BaseTest
     {
@@ -24,7 +25,7 @@ namespace Editor.Tests.Systems
             });
 
             // Act
-            World.CreateManager<global::Systems.Common.ProcessDamage>().Update();
+            World.CreateManager<ProcessDamage>().Update();
 
             // Assert
             Assert.AreEqual(math.max(0, initialHealth - damage),

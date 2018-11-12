@@ -1,9 +1,10 @@
-﻿using Components.Common;
+﻿using Systems.Common;
+using Components.Common;
 using NUnit.Framework;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Editor.Tests.Systems
+namespace Editor.Tests.Systems.Common
 {
     [TestFixture]
     public class MoveTest : BaseTest
@@ -23,7 +24,7 @@ namespace Editor.Tests.Systems
             EntityManager.SetComponentData(entity, new MoveSpeed {Value = speed});
 
             // Act
-            World.CreateManager<global::Systems.Common.Move>().Update();
+            World.CreateManager<Move>().Update();
 
             // Assert
             Assert.AreEqual(

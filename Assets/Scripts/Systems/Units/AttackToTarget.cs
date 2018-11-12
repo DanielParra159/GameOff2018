@@ -7,7 +7,7 @@ namespace Systems.Units
 {
     [UpdateAfter(typeof(TargetDetection))]
     [UsedImplicitly]
-    public class ProcessTarget : ComponentSystem
+    public class AttackToTarget : ComponentSystem
     {
         private ComponentGroup _unitInfoGroup;
         
