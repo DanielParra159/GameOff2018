@@ -6,7 +6,7 @@ using Unity.Entities;
 
 namespace Editor.Tests.Systems.Units
 {
-    public class AttackToTargetTest: BaseTest
+    public class AttackToTargetTest : BaseTest
     {
         private Entity _entity;
         private Entity _opponent;
@@ -30,7 +30,6 @@ namespace Editor.Tests.Systems.Units
         public void WhenAttackIsProcessedRemoveTarget()
         {
             // Arrange
-            
             EntityManager.SetComponentData(_entity, new Attack {Damage = 10, IsReady = false});
 
             // Act

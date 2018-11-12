@@ -1,5 +1,5 @@
+using Builders.Units;
 using UnityEngine;
-using Builders.Unit;
 using UnityEngine.Assertions;
 
 public class SceneInitializer : MonoBehaviour
