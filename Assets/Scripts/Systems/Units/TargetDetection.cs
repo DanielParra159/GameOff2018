@@ -5,7 +5,6 @@ using JetBrains.Annotations;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace Systems.Units
 {
@@ -94,6 +93,7 @@ namespace Systems.Units
                             {
                                 Entity = otherUnit.Entity
                             });
+                            break;
                         }
                     }
                     

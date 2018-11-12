@@ -3,7 +3,6 @@ using Components.Common;
 using Components.Units;
 using JetBrains.Annotations;
 using Unity.Entities;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Systems.Common

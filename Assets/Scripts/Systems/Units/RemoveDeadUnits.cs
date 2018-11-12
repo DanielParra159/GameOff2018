@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using Components.Common;
 using Components.Units;
 using JetBrains.Annotations;
+using Unity.Collections;
 using Unity.Entities;
 using UnityEngine.AddressableAssets;
 
@@ -11,21 +11,21 @@ namespace Systems.Units
     public class DestroyUnits : ComponentSystem
     {
 #pragma warning disable 649
-        private struct Entities
+        private struct Data
         {
             public readonly int Length;
             public GameObjectArray GameObjects;
-            public ComponentDataArray<Unit> Units;
-            public ComponentDataArray<Dead> Healths;
+            [ReadOnly] public ComponentDataArray<Unit> Units;
+            [ReadOnly] public ComponentDataArray<Dead> Healths;
         }
-        [Inject] private Entities _entities;
+        [Inject] private Data _data;
 #pragma warning restore 649
         
         protected override void OnUpdate()
         {
-            for (var i = 0; i < _entities.Length; ++i)
+            for (var i = 0; i < _data.Length; ++i)
             {
-                Addressables.ReleaseInstance(_entities.GameObjects[i]);
+                Addressables.ReleaseInstance(_data.GameObjects[i]);
             }
         }
     }
