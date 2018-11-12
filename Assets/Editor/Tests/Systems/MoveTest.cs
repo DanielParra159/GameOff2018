@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Editor.Tests.Systems.Move
+namespace Editor.Tests.Systems
 {
     [TestFixture]
     public class MoveTest : BaseTest
@@ -14,17 +14,22 @@ namespace Editor.Tests.Systems.Move
         public void MoveEntity(int speed)
         {
             // Arrange
-            var entity = EntityManager.CreateEntity(typeof(Position2D),
+            var entity = EntityManager.CreateEntity(
+                typeof(Position2D),
                 typeof(Heading2D),
-                typeof(MoveSpeed));
+                typeof(MoveSpeed)
+            );
             EntityManager.SetComponentData(entity, new Heading2D {Value = new float2 {x = 1, y = 0}});
             EntityManager.SetComponentData(entity, new MoveSpeed {Value = speed});
 
             // Act
             World.CreateManager<global::Systems.Common.Move>().Update();
-            
+
             // Assert
-            Assert.AreEqual(new float2 {x = speed * Time.deltaTime, y = 0}, EntityManager.GetComponentData<Position2D>(entity).Value);
+            Assert.AreEqual(
+                new float2 {x = speed * Time.deltaTime, y = 0},
+                EntityManager.GetComponentData<Position2D>(entity).Value
+            );
         }
     }
 }
