@@ -29,6 +29,7 @@ namespace Systems.Units
                 ComponentType.ReadOnly(typeof(Range)),
                 ComponentType.ReadOnly(typeof(Position2D)),
                 ComponentType.ReadOnly(typeof(Faction)),
+                ComponentType.ReadOnly(typeof(AnimationData)),
                 ComponentType.Subtractive(typeof(Dying))
             );
 
