@@ -1,9 +1,5 @@
-using Unity.Entities;
 using UnityEngine;
 using Builders.Unit;
-using Components.Common;
-using Components.Units;
-using Unity.Mathematics;
 using UnityEngine.Assertions;
 
 public class SceneInitializer : MonoBehaviour

@@ -2,7 +2,6 @@ using Components.Common;
 using Components.Units;
 using JetBrains.Annotations;
 using Unity.Entities;
-using UnityEngine;
 
 namespace Systems.Units
 {
