@@ -12,6 +12,7 @@ namespace UI
         // TODO: Quickly test
         [SerializeField] private int _faction;
         [SerializeField] private int _path;
+        [SerializeField] private int _unitType;
 
         private void Awake()
         {
@@ -20,7 +21,7 @@ namespace UI
 
         private void OnButtonClicked()
         {
-            SpawnUnit(_faction, _path, 0);
+            SpawnUnit(_faction, _path, _unitType);
         }
 
         private void SpawnUnit(int faction, int path, int unitType)

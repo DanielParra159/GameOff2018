@@ -246,6 +246,7 @@ MonoBehaviour:
   _button: {fileID: 86636322}
   _faction: 1
   _path: 0
+  _unitType: 0
 --- !u!1 &339339552
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +731,7 @@ MonoBehaviour:
   _button: {fileID: 1092960077}
   _faction: 0
   _path: 0
+  _unitType: 1
 --- !u!1 &1145248222
 GameObject:
   m_ObjectHideFlags: 0
