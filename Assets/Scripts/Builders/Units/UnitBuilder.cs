@@ -2,7 +2,7 @@ using Components.Common;
 using Components.Units;
 using Unity.Entities;
 
-namespace Builders.Unit
+namespace Builders.Units
 {
     public class UnitBuilder
     {
@@ -22,7 +22,6 @@ namespace Builders.Unit
             entityManager.AddBuffer<Damage>(entity);
         }
 
-        
         private Position2D GetPositionComponent(SpawnInfo unitData)
         {
             return new Position2D
@@ -39,9 +38,9 @@ namespace Builders.Unit
             };
         }
 
-        private Components.Units.Unit GetUnitComponent(SpawnInfo unitData)
+        private Unit GetUnitComponent(SpawnInfo unitData)
         {
-            return new Components.Units.Unit {Path = unitData.Path};
+            return new Unit {Path = unitData.Path};
         }
         
         private Faction GetFactionComponent(SpawnInfo unitData)

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.ResourceManagement;
 
-namespace Builders.Unit
+namespace Builders.Units
 {
     [CreateAssetMenu(fileName = "UnitFactory", menuName = Constants.AssetsMenu + "Units/UnitFactory", order = 1)]
     public class UnitFactory : ScriptableObject, IUnitFactory

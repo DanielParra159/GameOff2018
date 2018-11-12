@@ -3,7 +3,7 @@ using Components.Units;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Builders.Unit
+namespace Builders.Units
 {
     [CreateAssetMenu(fileName = "UnitConfiguration", menuName = Constants.AssetsMenu + "Units/UnitConfiguration", order = 1)]
     public class UnitConfiguration : ScriptableObject

@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Systems.Common
 {
     [UpdateAfter(typeof(TargetDetection))]
-    [UpdateBefore(typeof(ProcessTarget))]
+    [UpdateBefore(typeof(AttackToTarget))]
     [UsedImplicitly]
     public class Move : ComponentSystem
     {

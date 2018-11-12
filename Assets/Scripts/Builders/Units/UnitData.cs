@@ -1,6 +1,6 @@
 using Components.Common;
 
-namespace Builders.Unit
+namespace Builders.Units
 {
     public class UnitData
     {

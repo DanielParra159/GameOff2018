@@ -15,6 +15,7 @@ namespace Systems.Units
             _group = GetComponentGroup(
                 ComponentType.ReadOnly(typeof(Unit)),
                 ComponentType.ReadOnly(typeof(Health)),
+                ComponentType.ReadOnly(typeof(AnimationData)),
                 ComponentType.Subtractive(typeof(Dying))
             );
         }

@@ -1,6 +1,6 @@
 using Components.Units;
 
-namespace Builders.Unit
+namespace Builders.Units
 {
     public interface IUnitFactory
     {
