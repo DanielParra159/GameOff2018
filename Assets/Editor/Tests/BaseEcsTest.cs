@@ -3,7 +3,7 @@ using Unity.Entities;
 
 namespace Editor.Tests
 {
-    public class BaseTest
+    public class BaseEcsTest
     {
         protected World World;
         protected EntityManager EntityManager;

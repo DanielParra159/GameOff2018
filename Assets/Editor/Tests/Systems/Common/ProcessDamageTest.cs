@@ -5,7 +5,8 @@ using Unity.Mathematics;
 
 namespace Editor.Tests.Systems.Common
 {
-    public class ProcessDamageTest : BaseTest
+    [TestFixture]
+    public class ProcessDamageTest : BaseEcsTest
     {
         [TestCase(3, 1)]
         [TestCase(3, 3)]

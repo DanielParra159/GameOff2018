@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Editor.Tests.Systems.Units
 {
-    public class CheckForDeathUnitsTest : BaseTest
+    public class CheckForDeathUnitsTest : BaseEcsTest
     {
         [Test]
         public void WhenHealthIsZeroThenAddDyingComponent()

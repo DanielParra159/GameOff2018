@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Editor.Tests.Systems.Common
 {
     [TestFixture]
-    public class MoveTest : BaseTest
+    public class MoveTest : BaseEcsTest
     {
         [TestCase(0)]
         [TestCase(1)]
