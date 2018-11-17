@@ -17,7 +17,7 @@ namespace Systems.Player
         {
             public ComponentDataArray<Energy> Energies;
             [ReadOnly] public ComponentDataArray<EnergyRecharger> EnergyRechargers;
-            public float DeltaTime;
+            [ReadOnly] public float DeltaTime;
 
             public void Execute(int i)
             {
@@ -28,11 +28,11 @@ namespace Systems.Player
             }
         }
 
-        ComponentGroup _processDamage;
+        ComponentGroup _rechargeEnergyGroup;
 
         protected override void OnCreateManager()
         {
-            _processDamage = GetComponentGroup(
+            _rechargeEnergyGroup = GetComponentGroup(
                 typeof(Energy),
                 ComponentType.ReadOnly(typeof(EnergyRecharger))
             );
@@ -42,11 +42,11 @@ namespace Systems.Player
         {
             var rechargeEnergyJob = new RechargeEnergyJob
             {
-                Energies = _processDamage.GetComponentDataArray<Energy>(),
-                EnergyRechargers = _processDamage.GetComponentDataArray<EnergyRecharger>(),
+                Energies = _rechargeEnergyGroup.GetComponentDataArray<Energy>(),
+                EnergyRechargers = _rechargeEnergyGroup.GetComponentDataArray<EnergyRecharger>(),
                 DeltaTime = Time.deltaTime
             };
-            var rechargeEnergyJobHandle = rechargeEnergyJob.Schedule(_processDamage.CalculateLength(), 64, inputDeps);
+            var rechargeEnergyJobHandle = rechargeEnergyJob.Schedule(_rechargeEnergyGroup.CalculateLength(), 64, inputDeps);
             return rechargeEnergyJobHandle;
         }
     }

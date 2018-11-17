@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace Ui
 {
     [RequireComponent(typeof(Button))]
     public class SpawnButton : MonoBehaviour
