@@ -6,16 +6,18 @@ using Unity.Entities;
 namespace Systems.Player.Ui
 {
     [UsedImplicitly]
-    public class UpdatePlayerEnergyUi : ComponentSystem
+    public class UpdateLocalPlayerEnergyUi : ComponentSystem
     {
-        public struct PlayersData
+#pragma warning disable 649
+        private struct PlayersData
         {
-            public ComponentArray<Components.Player.Player> Players;
+            public ComponentArray<LocalPlayer> Players;
             public ComponentArray<PlayerUiController> PlayerUiControllers;
             public ComponentDataArray<Energy> Energies;
         }
 
         [Inject] private PlayersData _playerDataGroup;   
+#pragma warning restore 649
         
         protected override void OnUpdate()
         {
@@ -24,6 +26,7 @@ namespace Systems.Player.Ui
                 var playerUiController = _playerDataGroup.PlayerUiControllers[i];
                 var energy = _playerDataGroup.Energies[i];
                 playerUiController.PlayerEnergyUi.UpdateEnergy(energy);
+                playerUiController.SpawnButton.EnergyUpdated(energy);
             }
         }
     }

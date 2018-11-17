@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Components.Player
 {
-    public class Player : MonoBehaviour
+    public class LocalPlayer : MonoBehaviour
     {
         
     }

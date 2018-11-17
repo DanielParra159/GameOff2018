@@ -247,6 +247,7 @@ MonoBehaviour:
   _faction: 1
   _path: 0
   _unitType: 0
+  _energyCost: 2
 --- !u!1 &238706020
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,6 +957,7 @@ MonoBehaviour:
   _faction: 0
   _path: 0
   _unitType: 0
+  _energyCost: 2
 --- !u!1 &1145248222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1071,7 @@ GameObject:
   - component: {fileID: 1589636787}
   - component: {fileID: 1589636786}
   m_Layer: 0
-  m_Name: Player
+  m_Name: LocalPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1100,6 +1102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerEnergyUi: {fileID: 965153178}
+  _spawnButton: {fileID: 1092960080}
   _gameObjectEntity: {fileID: 1589636788}
 --- !u!114 &1589636788
 MonoBehaviour:
