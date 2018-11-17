@@ -6,7 +6,7 @@ using Unity.Entities;
 
 namespace Editor.Tests.Systems.Units
 {
-    public class TargetDetectionTest : BaseTest
+    public class TargetDetectionTest : BaseEcsTest
     {
         private EntityArchetype GetTargetDetectionArchetype()
         {

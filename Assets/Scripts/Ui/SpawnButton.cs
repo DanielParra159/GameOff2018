@@ -1,8 +1,9 @@
 ﻿using Components.Path;
+using Components.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace Ui
 {
     [RequireComponent(typeof(Button))]
     public class SpawnButton : MonoBehaviour
@@ -13,6 +14,12 @@ namespace UI
         [SerializeField] private int _faction;
         [SerializeField] private int _path;
         [SerializeField] private int _unitType;
+        [SerializeField] private int _energyCost;
+
+        public void EnergyUpdated(Energy energy)
+        {
+            _button.interactable = energy.CurrentValue >= _energyCost;
+        }
 
         private void Awake()
         {

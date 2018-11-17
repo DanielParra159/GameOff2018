@@ -6,7 +6,7 @@ using Unity.Entities;
 
 namespace Editor.Tests.Systems.Units
 {
-    public class AttackToTargetTest : BaseTest
+    public class AttackToTargetTest : BaseEcsTest
     {
         private Entity _entity;
         private Entity _opponent;
