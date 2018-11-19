@@ -1,6 +1,7 @@
-using Components.Player;
-
-public interface ISpawnBarUi
+namespace Components.Player.Ui
 {
-    void EnergyUpdated(Energy energy);
+    public interface ISpawnBarUi
+    {
+        void EnergyUpdated(Energy energy);
+    }
 }

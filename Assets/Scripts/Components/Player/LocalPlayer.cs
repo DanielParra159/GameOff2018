@@ -1,8 +1,8 @@
-using UnityEngine;
+using Unity.Entities;
 
 namespace Components.Player
 {
-    public class LocalPlayer : MonoBehaviour
+    public struct LocalPlayer : IComponentData
     {
         
     }

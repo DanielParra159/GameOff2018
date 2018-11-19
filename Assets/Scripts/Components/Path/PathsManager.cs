@@ -8,21 +8,12 @@ namespace Components.Path
 {
     public class PathsManager : MonoBehaviour
     {
-        // TODO: This is a quickly test
-        public static PathsManager Instance{ get; private set; }
-        
         [SerializeField]
         private Path[] _paths;
 
-        private void Awake()
+        public void SpawnUnit(TrySpawnUnit trySpawnUnit)
         {
-            Assert.IsNull(Instance);
-            Instance = this;
-        }
-
-        public void SpawnUnit(int faction, int path, int unitType)
-        {
-            var spawnPoint = _paths[path]._spawnPoint[faction];
+            var spawnPoint = _paths[trySpawnUnit.Path]._spawnPoint[trySpawnUnit.Faction];
             var position = spawnPoint.transform.position;
             var heading = spawnPoint.Heading;
             
@@ -30,11 +21,12 @@ namespace Components.Path
             var spawnInfo = entityManager.CreateEntity();
             entityManager.AddComponentData(spawnInfo, new SpawnInfo
             {
-                Faction = faction,
+                Faction = trySpawnUnit.Faction,
                 Heading = heading,
                 Position = new float2(position.x, position.y),
-                Path = path,
-                Unit = unitType
+                Path = trySpawnUnit.Path,
+                Unit = trySpawnUnit.Unit,
+                Energy = trySpawnUnit.Energy
             });
         }
     }

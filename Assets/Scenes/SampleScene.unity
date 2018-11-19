@@ -643,6 +643,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520715930}
   m_CullTransparentMesh: 0
+--- !u!1 &620395692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 620395695}
+  - component: {fileID: 620395694}
+  - component: {fileID: 620395693}
+  m_Layer: 0
+  m_Name: AIPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &620395693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620395692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8773388173a145e08ab4072bad5fe69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isLocalPlayer: 0
+  _faction: 1
+  _playerEnergyUi: {fileID: 965153178}
+  _spawnBarUi: {fileID: 1145248227}
+  _gameObjectEntity: {fileID: 620395694}
+--- !u!114 &620395694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620395692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf10cdea1344482e91a4f2b58506b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &620395695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620395692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &878519600
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +1018,7 @@ MonoBehaviour:
   _faction: 0
   _path: 0
   _unitType: 0
-  _energyCost: 2
+  _energyCost: 5
 --- !u!1 &1145248222
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,8 +1031,9 @@ GameObject:
   - component: {fileID: 1145248225}
   - component: {fileID: 1145248224}
   - component: {fileID: 1145248223}
+  - component: {fileID: 1145248227}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: SpawnBarUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1058,6 +1120,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1145248227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145248222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b57390bb727f44e5aee764a49f9c4f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnButton: {fileID: 1092960080}
 --- !u!1 &1589636785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1144,6 @@ GameObject:
   - component: {fileID: 1589636789}
   - component: {fileID: 1589636788}
   - component: {fileID: 1589636787}
-  - component: {fileID: 1589636786}
   m_Layer: 0
   m_Name: LocalPlayer
   m_TagString: Untagged
@@ -1077,18 +1151,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1589636786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589636785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed686d28869f4d3391a3d7e4f3ea5d29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1589636787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,8 +1163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8773388173a145e08ab4072bad5fe69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isLocalPlayer: 1
+  _faction: 0
   _playerEnergyUi: {fileID: 965153178}
-  _spawnButton: {fileID: 1092960080}
+  _spawnBarUi: {fileID: 1145248227}
   _gameObjectEntity: {fileID: 1589636788}
 --- !u!114 &1589636788
 MonoBehaviour:

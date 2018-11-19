@@ -2,10 +2,11 @@
 
 namespace Components.Units
 {
-    public struct SpawnUnitEvent : IComponentData
+    public struct TrySpawnUnit : IComponentData
     {
         public int Faction;
         public int Unit;
         public int Path;
+        public int Energy;
     }
 }

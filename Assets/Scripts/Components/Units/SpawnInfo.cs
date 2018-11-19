@@ -10,5 +10,6 @@ namespace Components.Units
         public int Faction;
         public int Path;
         public int Unit;
+        public int Energy;
     }
 }
