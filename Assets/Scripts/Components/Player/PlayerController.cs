@@ -9,11 +9,11 @@ namespace Components.Player.Ui
     public class PlayerUiController : MonoBehaviour
     {
         [SerializeField] private PlayerEnergyUi _playerEnergyUi;
-        [SerializeField] private SpawnButton _spawnButton;
+        [SerializeField] private SpawnBarUi _spawnBarUi;
         [SerializeField] private GameObjectEntity _gameObjectEntity;
 
         public IPlayerEnergyUi PlayerEnergyUi => _playerEnergyUi;
-        public SpawnButton SpawnButton => _spawnButton;
+        public ISpawnBarUi SpawnBarUi => _spawnBarUi;
 
         private void Start()
         {
@@ -25,4 +25,6 @@ namespace Components.Player.Ui
             entityManager.AddComponentData(entity, new Faction{Value = 0});
         }
     }
+
+    
 }
