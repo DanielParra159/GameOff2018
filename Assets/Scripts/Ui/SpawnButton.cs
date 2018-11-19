@@ -1,5 +1,7 @@
 ﻿using Components.Path;
 using Components.Player;
+using Components.Units;
+using Unity.Entities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +35,17 @@ namespace Ui
 
         private void SpawnUnit(int faction, int path, int unitType)
         {
-            PathsManager.Instance.SpawnUnit(faction, path, unitType);
+            var entityManager = World.Active.GetOrCreateManager<EntityManager>();
+            var spawnInfo = entityManager.CreateEntity();
+            entityManager.AddComponentData(spawnInfo, new TrySpawnUnit
+            {
+                Faction = faction,
+                Path = path,
+                Unit = unitType,
+                Energy = _energyCost
+            });
         }
     }
+
+ 
 }

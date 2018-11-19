@@ -11,8 +11,8 @@ namespace Systems.Player.Ui
 #pragma warning disable 649
         private struct PlayersData
         {
-            public ComponentArray<LocalPlayer> Players;
-            public ComponentArray<PlayerUiController> PlayerUiControllers;
+            public ComponentDataArray<LocalPlayer> Players;
+            public ComponentArray<PlayerController> PlayerUiControllers;
             public ComponentDataArray<Energy> Energies;
         }
 
@@ -26,7 +26,7 @@ namespace Systems.Player.Ui
                 var playerUiController = _playerDataGroup.PlayerUiControllers[i];
                 var energy = _playerDataGroup.Energies[i];
                 playerUiController.PlayerEnergyUi.UpdateEnergy(energy);
-                playerUiController.SpawnButton.EnergyUpdated(energy);
+                playerUiController.SpawnBarUi.EnergyUpdated(energy);
             }
         }
     }

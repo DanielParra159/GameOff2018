@@ -12,9 +12,4 @@ namespace Components.Player.Ui
             Debug.Log(energy.CurrentValue);
         }
     }
-
-    public interface IPlayerEnergyUi
-    {
-        void UpdateEnergy(Energy energy);
-    }
 }
